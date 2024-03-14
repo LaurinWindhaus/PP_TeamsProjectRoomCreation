@@ -1,0 +1,15 @@
+version: '3'
+services:
+  fastapi-app:
+    image: teams_projekt_room_creation:latest  # Use the image name you built with Docker
+    build: 
+      context: .  # Dockerfile location
+    volumes:
+      - ./logs:/app/logs  # Map the logs directory from the host to the container
+      - ./.env:/app/.env  # Map the .env file from the host to the container
+    environment:
+      - CLIENT_ID=${CLIENT_ID}  # Example of setting environment variable from .env file
+      - CLIENT_SECRET=${CLIENT_SECRET}
+      - TENANT_ID=${TENANT_ID}
+      - TEMPLATE_TEAM_NAME=${TEMPLATE_TEAM_NAME}
+    restart: always
